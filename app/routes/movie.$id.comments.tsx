@@ -8,7 +8,6 @@ export async function loader({params}: LoaderArgs) {
 
 try {
     const data = await db.comment.findMany({
-
          where: {
             movieId: params.id,
          },
@@ -18,7 +17,8 @@ try {
     });
     console.log('Fetched comments:', data)
     return json({data})
-} catch(error) {
+
+  } catch(error) {
     console.log('Error while fetching comments: ', error)
     return json({data: []});
 }
@@ -69,7 +69,7 @@ export default function Comments() {
 
                     <textarea id="comment" name="comment" aria-label="Comment" placeholder="Enter your comment here..." className="w-full border border-teal-500 rounded-lg p-2">
                     </textarea>
-                    <input type="hidden" name="id" value={id.value}/>
+                    <input type="hidden" name="id" value={id.id}/>
 
                     <button 
                     type="submit" 
