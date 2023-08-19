@@ -31,7 +31,7 @@ try {
     const data = await db.comment.create({
         data: {
             message: formData.get('comment') as string,
-            movieId: formData.get('id') as string
+            movieId: formData.get('id') as any
         }
     });
     console.log('Comment created: ', data)
