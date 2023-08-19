@@ -69,7 +69,7 @@ export default function Comments() {
 
                     <textarea id="comment" name="comment" aria-label="Comment" placeholder="Enter your comment here..." className="w-full border border-teal-500 rounded-lg p-2">
                     </textarea>
-                    <input type="hidden" name="id" value={id as unknown as any}/>
+                    <input type="hidden" name="id" value={id.value}/>
 
                     <button 
                     type="submit" 
