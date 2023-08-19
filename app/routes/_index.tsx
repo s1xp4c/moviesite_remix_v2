@@ -8,7 +8,7 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-export async function loader({}: LoaderArgs) {
+export async function loader({params}: LoaderArgs) {
   const url = await fetch(
     'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
     {
@@ -37,8 +37,16 @@ export default function Index() {
 {data.results.map((movie: any) => (
 <div key={movie.id} className="flex flex-col overflow-hidden rounded-lg border bg-white">
   <Link prefetch="intent" className="group relative block h-48 overflow-hidden bg-gray-100 md:h-64" to={`movie/${movie.id}/comments`} >
-<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`${movie.id}`} />
+<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={`${movie.id}`} className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"/>
   </Link>
+  <div className="flex flex-col flex-1 p-4 sm:p-6">
+    <p className="mb-2 text-xl font-semibold text-gray-800">
+      <Link to={`movie/${movie.id}/comments`} prefetch="intent" className="transition duration-100 hover:text-indigo-500 active:text-indigo-600">
+        {movie.title}
+      </Link>
+    </p>
+    <p className="text-gray-500 line-clamp-3">{movie.overview} </p>
+  </div>
 </div>
 ))}
   </div>
