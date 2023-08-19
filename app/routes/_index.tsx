@@ -14,8 +14,8 @@ export async function loader({params}: LoaderArgs) {
     {
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzIzMWJiNmE2NzkyOGVkOTIxZTAwN2RiNWYyZGU0MSIsInN1YiI6IjY0ZGZlN2M5MDc2Y2U4MDBjNjQxYzRmMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zv5lnK-KncQOb9mn5Idh_DffMZYnrG2R-wW7_c4SAos',
-      },
+        Authorization: process.env.MOVIEDB_AUTH,
+    },
     
     }
   );

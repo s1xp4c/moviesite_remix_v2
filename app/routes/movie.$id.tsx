@@ -1,13 +1,13 @@
 import type { LoaderArgs} from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, Outlet, useLoaderData } from "@remix-run/react";
 
 export async function loader({params}: LoaderArgs) {
     const url = await fetch(`https://api.themoviedb.org/3/movie/${params.id}?language=en-US`,
     {
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzIzMWJiNmE2NzkyOGVkOTIxZTAwN2RiNWYyZGU0MSIsInN1YiI6IjY0ZGZlN2M5MDc2Y2U4MDBjNjQxYzRmMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zv5lnK-KncQOb9mn5Idh_DffMZYnrG2R-wW7_c4SAos'
+            Authorization: process.env.MOVIEDB_AUTH,
         },
     }
     );
@@ -45,6 +45,9 @@ export default function MovieId() {
                         <span className="font-semibold text-teal-500">Release Date: </span>
                         <span  className="">{data.release_date}</span>
                     </p>
+                 </div>
+                 <div className="w-1/2">
+                    <Outlet/>
                  </div>
             </div>
         </div>
